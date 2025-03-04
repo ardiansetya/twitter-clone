@@ -17,6 +17,7 @@ model User {
     image String?
 
     tweet Tweet[]
+    likes  Like[]
 }
 
 model Tweet {
@@ -27,9 +28,18 @@ model Tweet {
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+    likes Like[]
+
     @@index([userId])
 }
 
-model like {
-    
+model Like {
+    userId  String
+    tweetId String
+    user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    Tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+
+    @@id([tweetId, userId])
+    @@index([tweetId])
+    @@index([userId])
 }
