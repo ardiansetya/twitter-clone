@@ -18,6 +18,9 @@ model User {
 
     tweet Tweet[]
     likes  Like[]
+
+    followers User[] @relation(name:"Followers")
+    follows User[] @relation(name:"Followers")
 }
 
 model Tweet {
