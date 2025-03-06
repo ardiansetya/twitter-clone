@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
+import SideNav from "~/components/SideNav";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -15,7 +16,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <title>Twitter Clone</title>
           <meta name="description" content="Twitter Clone by Michelle" />
         </Head>
-        <Component {...pageProps} />
+        <div className="container mx-auto flex">
+          <SideNav/>
+          <div className="min-h-screen flex-grow border-x">
+            <Component {...pageProps} />
+          </div>
+        </div>
       </ClerkProvider>
     </div>
   );
