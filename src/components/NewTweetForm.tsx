@@ -9,7 +9,7 @@ const NewTweetForm = () => {
         <UserButton/>
         <textarea placeholder="What's happening" className="p-4 outline-none resize-none text-lg overflow-hidden flex-grow" />
       </div>
-      <Button >asdsa</Button>
+      <Button className="self-end" >Tweet</Button>
     </form>
   );
 };
