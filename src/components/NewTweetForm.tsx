@@ -1,7 +1,6 @@
-import { UserButton, useUser } from "@clerk/nextjs";
+import {  useUser } from "@clerk/nextjs";
 import React, {
   useCallback,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -14,7 +13,8 @@ function updateTextAreaSize(textArea: HTMLTextAreaElement) {
   textArea.style.height = "0";
   textArea.style.height = `${textArea.scrollHeight}px`;
 }
-const NewTweetForm = () => {
+
+function Form() {
   const { user } = useUser();
 
   const [inputValue, setInputValue] = useState("");
@@ -44,6 +44,13 @@ const NewTweetForm = () => {
       <Button className="self-end">Tweet</Button>
     </form>
   );
+}
+const NewTweetForm = () => {
+  const { user } = useUser();
+
+  if (!user) return null;
+
+  return <Form />;
 };
 
 export default NewTweetForm;
