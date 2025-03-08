@@ -1,26 +1,32 @@
 import { UserButton, useUser } from "@clerk/nextjs";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Button from "./Button";
 import ProfileImage from "./ProfileImage";
 
-function updateTextAreaSize (textArea: HTMLTextAreaElement) {
-  if (textArea == null) return
-  textArea.style.height = "0"
-  textArea.style.height = `${textArea.scrollHeight}px`
-
+function updateTextAreaSize(textArea: HTMLTextAreaElement) {
+  if (textArea == null) return;
+  textArea.style.height = "0";
+  textArea.style.height = `${textArea.scrollHeight}px`;
 }
 const NewTweetForm = () => {
   const { user } = useUser();
 
   const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>();
+  const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
+    updateTextAreaSize(textArea);
+    textAreaRef.current = textArea;
+  }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     updateTextAreaSize(textAreaRef.current);
-  
-   
-  }, [inputValue])
-  
+  }, [inputValue]);
 
   return (
     <form className="flex flex-col gap-2 border-b px-4 py-2">
