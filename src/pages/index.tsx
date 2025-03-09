@@ -1,6 +1,8 @@
+import { getAuth } from "@clerk/nextjs/server";
 import NewTweetForm from "~/components/NewTweetForm";
 
-export default function Home() {
+export default function  Home() {
+
 
   return (
     <>
